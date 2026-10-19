@@ -4,7 +4,7 @@ Aplikasi desktop sederhana untuk mencatat utang usaha, pengajuan reimbursement k
 
 ## Demo web
 
-Buka [Sakura Event](https://rahelinda885-lab.github.io/Sakura_Event/frontend/).
+Buka [Sakura Event](https://rahelinda885-lab.github.io/Sistem-informasi-utang-usaha-dan-reimbursement-karyawan/).
 
 ## ERD — empat entitas
 
@@ -18,8 +18,8 @@ Relasi: `parties 1—N obligations`, `expense_categories 1—N obligations`, `ob
 ## Menyiapkan Supabase
 
 1. Buat project Supabase.
-2. Buka **SQL Editor**, lalu jalankan seluruh isi `Backend\schema.sql`.
-3. `Backend\schema.sql` mengaktifkan akses tanpa login untuk role `anon`. Ini membuat seluruh data dapat dibaca/diubah siapa pun yang mengetahui URL project. Gunakan konfigurasi ini hanya jika memang menginginkan akses publik.
+2. Buka **SQL Editor**, lalu jalankan seluruh isi `backend\schema.sql`.
+3. `backend\schema.sql` mengaktifkan akses tanpa login untuk role `anon`. Ini membuat seluruh data dapat dibaca/diubah siapa pun yang mengetahui URL project. Gunakan konfigurasi ini hanya jika memang menginginkan akses publik.
 4. Frontend langsung menggunakan Project URL dan publishable key; keduanya boleh berada di browser. Jangan pernah menaruh `service_role` key pada frontend.
 
 > **Penting untuk lampiran:** faktur, kuitansi karyawan, dan bukti transfer disimpan pada record Supabase yang mengikuti kebijakan akses publik di atas. Jangan unggah dokumen asli/berisi data sensitif ke project dengan akses `anon` ini. Untuk penggunaan produksi, aktifkan autentikasi dan kebijakan akses privat (termasuk penyimpanan dokumen privat) terlebih dahulu.
@@ -31,14 +31,14 @@ Gunakan Node.js 18 atau lebih baru (membutuhkan `fetch` bawaan). Dari PowerShell
 ```powershell
 $env:SUPABASE_URL = "https://PROJECT-REF.supabase.co"
 $env:SUPABASE_SERVICE_ROLE_KEY = "SERVICE-ROLE-KEY"
-node Backend\app.js
+node backend\app.js
 ```
 
 Buka `http://localhost:3000`. Untuk menghentikan server tekan `Ctrl+C`. Port dapat diubah melalui variabel lingkungan `PORT`.
 
 ## Membuka frontend langsung
 
-`Frontend\index.html` dapat dibuka langsung di browser tanpa menjalankan server. Frontend menggunakan Project URL dan publishable key yang telah dikonfigurasi, lalu membaca dan menyimpan transaksi langsung ke Supabase melalui REST API tanpa layar login. Jalankan `Backend\schema.sql` di SQL Editor agar tabel dan kebijakan RLS publik tersedia.
+`frontend\index.html` dapat dibuka langsung di browser tanpa menjalankan server. Frontend menggunakan Project URL dan publishable key yang telah dikonfigurasi, lalu membaca dan menyimpan transaksi langsung ke Supabase melalui REST API tanpa layar login. Jalankan `backend\schema.sql` di SQL Editor agar tabel dan kebijakan RLS publik tersedia.
 
 Untuk mode server lokal, jalankan langkah berikut. **Service role key hanya digunakan oleh server lokal dan tidak boleh dimasukkan ke frontend atau dibagikan.**
 
@@ -55,13 +55,13 @@ Dashboard menampilkan pengingat jatuh tempo, pekerjaan menunggu persetujuan, dan
 Struktur folder aplikasi:
 
 ```text
-Backend\
+backend\
   app.js
   schema.sql
-Frontend\
+frontend\
   index.html
   styles.css
   script.js
 ```
 
-Backend server lokal tidak memiliki autentikasi pengguna dan ditujukan hanya untuk penggunaan pada komputer/jaringan tepercaya; jangan mengeksposnya ke internet publik. Mode frontend langsung menggunakan Supabase Auth dan kebijakan RLS yang dijalankan melalui `Backend\schema.sql`.
+Backend server lokal tidak memiliki autentikasi pengguna dan ditujukan hanya untuk penggunaan pada komputer/jaringan tepercaya; jangan mengeksposnya ke internet publik. Mode frontend langsung menggunakan Supabase Auth dan kebijakan RLS yang dijalankan melalui `backend\schema.sql`.
