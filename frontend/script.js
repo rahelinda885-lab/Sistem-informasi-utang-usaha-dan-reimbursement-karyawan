@@ -4,8 +4,8 @@ const moneyFormatter = new Intl.NumberFormat('id-ID', { style: 'currency', curre
 const dateFormatter = new Intl.DateTimeFormat('id-ID', { day: '2-digit', month: '2-digit', year: 'numeric' });
 const today = localDate();
 const defaultSupabaseConfig = {
-  url: 'https://rjqzrsgnichealdqgotm.supabase.co',
-  key: 'sb_publishable_Mjor0VhWcGXzhdIBb0RGLw_2wZfPX_O'
+  url: 'https://vmsjewgjbtwahciopyfg.supabase.co',
+  key: 'sb_publishable_MC2tkBwKXBTCELJpZJVJVg_VKJPCm3t'
 };
 
 document.addEventListener('DOMContentLoaded', initialize);
